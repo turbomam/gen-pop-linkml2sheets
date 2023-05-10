@@ -99,9 +99,10 @@ This is a standard Python project that runs on the CLI.
 - [ ] Feature 1
 - [ ] Feature 2
 - [ ] Feature 3
-  - [ ] Nested Feature
+    - [ ] Nested Feature
 
-See the [open issues](https://github.com/turbomam/gen-pop-linkml2sheets/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/turbomam/gen-pop-linkml2sheets/issues) for a full list of proposed features (
+and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,9 +110,11 @@ See the [open issues](https://github.com/turbomam/gen-pop-linkml2sheets/issues) 
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
+contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also
+simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
@@ -133,6 +136,10 @@ Distributed under the MIT License. See [LICENSE.md](./LICENSE.md) for more infor
 <!-- CONTACT -->
 
 ## Contact
+
+Based on https://gotofritz.net/blog/creating-a-poetry-driven-python-project-template-with-cookiecutter/
+
+Esp, `cookiecutter gh:gotofritz/cookiecutter-gotofritz-poetry`
 
 Fritz, [@your_name@mastodon.social](https://mastodon.social/@your_name)
 
