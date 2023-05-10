@@ -1,4 +1,4 @@
-PYTHON_VERSION ?= 3.10.4
+PYTHON_VERSION ?= 3.9
 CMD := poetry run
 SRC_DIR := src
 TESTS_DIR := tests
@@ -39,3 +39,27 @@ qa: safety lint test ## for CI/CD. Runs all code quality tools
 
 qa-local: format qa ## for local development (before checking in). Formats code and runs qa
 .PHONY: qa-local
+
+RUN=poetry run
+
+clean:
+	rm -rf target
+
+# assumes user has curl or wget installed. curl --output-dir ?
+#   or modify generate_and_populate_template to take a url for the source schema?
+target/personinfo.yaml:
+	mkdir -p $(dir $@)
+	#wget -P $(dir $@) https://raw.githubusercontent.com/linkml/linkml/main/examples/PersonSchema/personinfo.yaml
+	curl -o $@ https://raw.githubusercontent.com/linkml/linkml/main/examples/PersonSchema/personinfo.yaml
+
+target/usage_template.tsv: target/personinfo.yaml
+	$(RUN) generate_and_populate_template \
+		 --columns-to-insert slot \
+		 --columns-to-insert class \
+		 --columns-to-remove annotations \
+		 --columns-to-remove name \
+		 --destination-template $@ \
+		 --intermediate-excel-file target/meta.xlsx \
+		 --meta-path https://raw.githubusercontent.com/linkml/linkml-model/main/linkml_model/model/schema/meta.yaml \
+		 --schema-path $< \
+		 --selected-sheet slot_definition
