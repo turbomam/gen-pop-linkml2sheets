@@ -21,9 +21,9 @@
 
 <!-- PROJECT LOGO -->
 
-<h1>Single step population of linkml2sheets usage reports, wiht useful columns only</h1>
+<h1>Single step population of linkml2sheets usage reports, with useful columns only</h1>
 
-<p>Single step population of linkml2sheets usage reports, wiht useful columns only</p>
+<p>Single step population of linkml2sheets usage reports, with useful columns only</p>
 <nav>
   <a href="https://github.com/turbomam/gen-pop-linkml2sheets">Repo</a>
   |
