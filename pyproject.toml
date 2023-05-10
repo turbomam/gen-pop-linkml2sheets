@@ -2,7 +2,7 @@
 name = "gen-pop-linkml2sheets"
 version = "0.1.0"
 description = ""
-authors = ["Mark Andrew Miller <@your_name@mastodon.social>"]
+authors = ["Mark Andrew Miller <MAM@lbl.gov>"]
 readme = "README.md"
 license = "MIT"
 homepage = "https://github.com/turbomam/gen-pop-linkml2sheets"
