@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gen-pop-linkml2sheets"
-version = "0.1.3"
+version = "0.1.4"
 description = ""
 authors = ["Mark Andrew Miller <MAM@lbl.gov>"]
 readme = "README.md"
