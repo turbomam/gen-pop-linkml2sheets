@@ -132,7 +132,10 @@ def generate_and_populate_template(source_schema_path: str, meta_path: str, base
     exporter.export(sv, specification=destination_template, to_file=populated_file)
 
     populated = pd.read_csv(populated_file, sep='\t')
-    populated = populated.iloc[1:]
+    if len(annotation_tags) > 0:
+        populated = populated.iloc[2:]
+    else:
+        populated = populated.iloc[1:]
     populated = populated.dropna(axis=1, how='all')
     populated.to_csv(useful_file, sep='\t', index=False)
 
