@@ -37,7 +37,8 @@ def discover_annotations(schema_view: SchemaView, verbose: bool = False) -> List
               default="meta.xlsx",
               help='Where should a local XLSX representation of the meta model be saved?')
 @click.option('--base-class',
-              default='slot_definition',
+              default=['slot_definition'],
+              multiple=True,
               help="Which class' definition should form the basis of the report?")
 @click.option('--columns-to-insert',
               multiple=True,
@@ -45,9 +46,32 @@ def discover_annotations(schema_view: SchemaView, verbose: bool = False) -> List
               help="What LinkML meta slots (that don't appear in the base class) should be added to the report?")
 @click.option('--columns-to-remove',
               multiple=True,
-              default=["all_members", "all_of", "alt_descriptions", "annotations", "any_of", "enum_range",
-                       "exactly_one_of", "extensions", "has_member", "name", "none_of", "path_rule", "range_expression",
-                       "structured_aliases", "unit"],
+              default=[
+                  "all_members",
+                  "all_of",
+                  "alt_descriptions",
+                  "annotations",
+                  "any_of",
+                  "enum_range",
+                  "exactly_one_of",
+                  "extensions",
+                  "has_member",
+                  "include",
+                  "inherits",
+                  "matches",
+                  "minus",
+                  "name",
+                  "none_of",
+                  "path_rule",
+                  "permissible_values",
+                  "prefix_prefix",
+                  "pv_formula",
+                  "range_expression",
+                  "reachable_from",
+                  "structured_aliases",
+                  "text",
+                  "unit",
+              ],
               help='What LinkML meta slots from the base class should be added to the report?')
 @click.option('--columns-to-use',
               multiple=True,
@@ -58,7 +82,7 @@ def discover_annotations(schema_view: SchemaView, verbose: bool = False) -> List
 @click.option('--destination-template',
               default='usage_template.tsv',
               help='Where should the template and usage reports TSVs be saved?')
-def generate_and_populate_template(source_schema_path: str, meta_path: str, base_class: str, destination_template: str,
+def generate_and_populate_template(source_schema_path: str, meta_path: str, base_class: list, destination_template: str,
                                    columns_to_remove: list, columns_to_insert: list,
                                    meta_model_excel_file: str, columns_to_use: list) -> None:
     """Generate a TSV representation of slot usages in a schema, guided by an XLSX representation of the metamodel.
@@ -90,8 +114,11 @@ def generate_and_populate_template(source_schema_path: str, meta_path: str, base
     excel_generator = ExcelGenerator(schema=meta_view.schema, output=meta_model_excel_file)
     excel_generator.serialize()
 
-    df = pd.read_excel(meta_model_excel_file, sheet_name=base_class)
-    columns_for_template = list(df.columns)
+    columns_for_template = set()
+    for one_base in base_class:
+        df = pd.read_excel(meta_model_excel_file, sheet_name=one_base)
+        columns_for_template.update(df.columns)
+    columns_for_template = list(columns_for_template)
 
     for column in columns_to_remove:
         if column in columns_for_template:
