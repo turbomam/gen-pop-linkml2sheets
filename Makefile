@@ -55,8 +55,39 @@ target/personinfo.yaml:
 target/usage_template.tsv: target/personinfo.yaml
 	$(RUN) generate_and_populate_template \
 		 --base-class slot_definition \
-		 --columns-to-insert class \
 		 --columns-to-insert slot \
+		 --columns-to-insert class \
+		 --destination-template $@ \
+		 --meta-model-excel-file target/meta.xlsx \
+		 --meta-path https://raw.githubusercontent.com/linkml/linkml-model/main/linkml_model/model/schema/meta.yaml \
+		 --source-schema-path $<
+
+target/enum_template.tsv: target/personinfo.yaml
+	$(RUN) generate_and_populate_template \
+		 --base-class enum_definition \
+		 --base-class permissible_value \
+		 --columns-to-insert enum \
+		 --columns-to-insert permissible_value \
+		 --destination-template $@ \
+		 --meta-model-excel-file target/meta.xlsx \
+		 --meta-path https://raw.githubusercontent.com/linkml/linkml-model/main/linkml_model/model/schema/meta.yaml \
+		 --source-schema-path $<
+
+# # schema_definition template can't be populated at this point
+# # so this template will be blank
+target/schema_template.tsv: target/personinfo.yaml
+	$(RUN) generate_and_populate_template \
+		 --base-class schema_definition \
+		 --columns-to-insert schema \
+		 --destination-template $@ \
+		 --meta-model-excel-file target/meta.xlsx \
+		 --meta-path https://raw.githubusercontent.com/linkml/linkml-model/main/linkml_model/model/schema/meta.yaml \
+		 --source-schema-path $<
+
+target/prefix_template.tsv: target/personinfo.yaml
+	$(RUN) generate_and_populate_template \
+		 --base-class prefix \
+		 --columns-to-insert prefix \
 		 --destination-template $@ \
 		 --meta-model-excel-file target/meta.xlsx \
 		 --meta-path https://raw.githubusercontent.com/linkml/linkml-model/main/linkml_model/model/schema/meta.yaml \
