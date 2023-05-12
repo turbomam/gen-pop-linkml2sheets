@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "gen-pop-linkml2sheets"
-version = "0.1.5"
+version = "0.1.7"
 description = ""
 authors = ["Mark Andrew Miller <MAM@lbl.gov>"]
 readme = "README.md"
 license = "MIT"
 homepage = "https://github.com/turbomam/gen-pop-linkml2sheets"
 repository = "https://github.com/turbomam/gen-pop-linkml2sheets"
+packages = [{ include = "gen_pop_linkml2sheets", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -105,5 +106,5 @@ include = '\.pyi?$'
 
 
 [tool.poetry.scripts]
-generate_and_populate_template = 'src.gen_pop_linkml2sheets.generate_and_populate_template:generate_and_populate_template'
+generate_and_populate_template = 'gen_pop_linkml2sheets.generate_and_populate_template:generate_and_populate_template'
 

@@ -54,12 +54,10 @@ target/personinfo.yaml:
 
 target/usage_template.tsv: target/personinfo.yaml
 	$(RUN) generate_and_populate_template \
-		 --columns-to-insert slot \
+		 --base-class slot_definition \
 		 --columns-to-insert class \
-		 --columns-to-remove annotations \
-		 --columns-to-remove name \
+		 --columns-to-insert slot \
 		 --destination-template $@ \
-		 --intermediate-excel-file target/meta.xlsx \
+		 --meta-model-excel-file target/meta.xlsx \
 		 --meta-path https://raw.githubusercontent.com/linkml/linkml-model/main/linkml_model/model/schema/meta.yaml \
-		 --schema-path $< \
-		 --selected-sheet slot_definition
+		 --source-schema-path $<
