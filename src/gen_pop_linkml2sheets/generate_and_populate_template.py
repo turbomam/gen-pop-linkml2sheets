@@ -71,6 +71,7 @@ def discover_annotations(schema_view: SchemaView, verbose: bool = False) -> List
                   "structured_aliases",
                   "text",
                   "unit",
+                  "instantiates",
               ],
               help='What LinkML meta slots from the base class should be added to the report?')
 @click.option('--columns-to-use',
