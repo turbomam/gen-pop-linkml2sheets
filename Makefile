@@ -44,11 +44,12 @@ RUN=poetry run
 
 clean:
 	rm -rf target
+	mkdir -p target
+	touch target/.gitkeep
 
 # assumes user has curl or wget installed. curl --output-dir ?
 #   or modify generate_and_populate_template to take a url for the source schema?
 target/personinfo.yaml:
-	mkdir -p $(dir $@)
 	#wget -P $(dir $@) https://raw.githubusercontent.com/linkml/linkml/main/examples/PersonSchema/personinfo.yaml
 	curl -o $@ https://raw.githubusercontent.com/linkml/linkml/main/examples/PersonSchema/personinfo.yaml
 
